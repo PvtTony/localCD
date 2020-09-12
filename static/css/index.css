@@ -1,0 +1,15 @@
+table {
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.intro {
+    text-align: center;
+}
+
+.query table tr {
+    text-align: center;
+}

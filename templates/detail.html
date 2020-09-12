@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-cn">
+<head>
+    <title>{{ resource.title }} - localCD</title>
+</head>
+<body>
+<div class="container">
+    <h3>{{ resource.title }}</h3>
+    <table>
+        <thead></thead>
+        <tbody>
+        <tr>
+            <td>VeryCD ID</td>
+            <td>{{ resource.verycd_id }}</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>{{ resource.title }}</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>{{ resource.status }}</td>
+        </tr>
+        <tr>
+            <td>Brief</td>
+            <td>{{ resource.brief }}</td>
+        </tr>
+        <tr>
+            <td>Publisher</td>
+            <td>{{ resource.publisher }}</td>
+        </tr>
+        <tr>
+            <td>Publish Time</td>
+            <td>{{ resource.publish_time }}</td>
+        </tr>
+        <tr>
+            <td>Update Time</td>
+            <td>{{ resource.update_time }}</td>
+        </tr>
+        <tr>
+            <td>Primary Category</td>
+            <td>{{ resource.pri_category }}</td>
+        </tr>
+        <tr>
+            <td>Secondary Category</td>
+            <td>{{ resource.sec_category }}</td>
+        </tr>
+        <tr>
+            <td>Links</td>
+            <td>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Size</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in resource.ed2k_links %}
+                        <tr>
+                            <td><a href="{{ item.link }}">{{ item.filename }}</a></td>
+                            <td>{{ item.size }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>{{ resource.description }}</td>
+        </tr>
+        <tr>
+            <td>Related Items</td>
+            <td>
+                <ul>
+                    {% for item in resource.related %}
+                        <li><a href=" {{ url_for('resource', verycd_id=item.verycd_id) }}">{{ item.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>PV</td>
+            <td>{{ resource.vcpv }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-cn">
+<head>
+    <title>LocalCD Application</title>
+    <link href="{{ url_for('static', filename='css/default.css', _external=True) }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/index.css', _external=True) }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+    <div class="intro">
+        <h2> Welcome to localCD! </h2>
+    </div>
+    <div class="query">
+        <form action="query" method="get">
+            <table>
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><label for="title">Search:
+                        <input type="text" name="title">
+                    </label></td>
+                    <td><label for="pri_category">Category:
+                        <select name="pri_category">
+                            <option value="">无</option>
+                            <option value="剧集">剧集</option>
+                            <option value="动漫">动漫</option>
+                            <option value="图书">图书</option>
+                            <option value="教育">教育</option>
+                            <option value="游戏">游戏</option>
+                            <option value="漫画">漫画</option>
+                            <option value="电影">电影</option>
+                            <option value="综艺">综艺</option>
+                            <option value="资料">资料</option>
+                            <option value="软件">软件</option>
+                            <option value="音乐">音乐</option>
+                        </select>
+                    </label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Go"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+

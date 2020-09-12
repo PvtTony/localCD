@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-cn">
+<head>
+    <title>{{ title }} - localCD</title>
+    <link href="{{ url_for('static', filename='css/query.css', _external=True) }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <form action="/query" method="get">
+            <p><label>Search:
+                <input type="text" name="title" value="{{ title }}">
+            </label><label for="pri_category">Category:
+                <select name="pri_category">
+                    <option value="">无</option>
+                    <option value="剧集">剧集</option>
+                    <option value="动漫">动漫</option>
+                    <option value="图书">图书</option>
+                    <option value="教育">教育</option>
+                    <option value="游戏">游戏</option>
+                    <option value="漫画">漫画</option>
+                    <option value="电影">电影</option>
+                    <option value="综艺">综艺</option>
+                    <option value="资料">资料</option>
+                    <option value="软件">软件</option>
+                    <option value="音乐">音乐</option>
+                </select>
+            </label>
+                <input type="submit" value="Go"></p>
+        </form>
+    </div>
+    <div class="resources">
+        {% if resources.total > 0 %}
+            <h4> Found {{ resources.total }} records. </h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>VeryCD ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Publisher</th>
+                    <th>Update Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for resource in resources.data %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('resource', verycd_id=resource.verycd_id) }}">{{ resource.verycd_id }}</a>
+                        </td>
+                        <td>{{ resource.title }}</td>
+                        <td>{{ resource.pri_category }}</td>
+                        <td>{{ resource.publisher }}</td>
+                        <td>{{ resource.update_time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="nav">
+                <p>
+                    Page {{ resources.current_page }}/{{ resources.total_pages }}
+                    {% if resources.current_page > 1 %}
+                        <a href="{{ url_for(request.endpoint, title=title, pri_category=pri_category, page=(resources.current_page - 1)) }}">Prev</a>
+                    {% endif %}
+                    {% if (resources.total - resources.current_page * resources.page_size) > 0 %}
+                        <a href="{{ url_for(request.endpoint, title=title, pri_category=pri_category, page=(resources.current_page + 1)) }}">Next</a>
+                    {% endif %}
+                </p>
+            </div>
+        {% else %}
+            <p> Resources not found. </p>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
